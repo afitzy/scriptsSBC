@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# sync cached writes
+sync
+shutdown $@
