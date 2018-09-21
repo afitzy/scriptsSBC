@@ -2,4 +2,4 @@
 
 # sync cached writes
 sync
-shutdown $@
+/sbin/shutdown $@
