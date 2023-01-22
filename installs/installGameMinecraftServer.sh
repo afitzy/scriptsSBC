@@ -37,7 +37,7 @@ function installMinecraftServer () {
 	git config --global --unset core.autocrlf
 
 	# Ref: https://www.spigotmc.org/wiki/buildtools/#latest
-	javaBin="../java/jdk-17.0.1+12/bin/java"
+	javaBin="${HOME}/java/jdk-17.0.1+12/bin/java"
 	echo "${friendlyName}: building JAR files with \"${javaBin}\""
 	"$javaBin" -jar "$filename" --rev 1.19.3
 
