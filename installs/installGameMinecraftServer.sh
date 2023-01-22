@@ -7,7 +7,10 @@ scriptDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 dateStamp=$(date --iso-8601="seconds")
 tempdir=$(mktemp -d)
 
-source "${scriptDir}/../utils.sh"
+function getOsVers () {
+	release=$(lsb_release --release --short 2>/dev/null)
+	echo "$release"
+}
 
 # Function to cleanup
 function cleanup () {
@@ -54,7 +57,7 @@ function uninstallMinecraftServer () {
 
 _VERBOSE=1
 
-if [[ "$(getOsVers)" == "16.04" || "$(getOsVers)" == "18.04" || "$(getOsVers)" == "20.04" || "$(getOsVers)" == "22.04" ]]; then
+if [[ "$(getOsVers)" == "10" ]]; then
 	installMinecraftServer
 else
 	echo "Unrecognized OS version. Not installed pre-requisites."
