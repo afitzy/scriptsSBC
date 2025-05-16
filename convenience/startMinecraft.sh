@@ -10,10 +10,8 @@ pushd ${HOME}/spigot
 javaBin="/usr/bin/java"
 screenSessionName="minecraftSpigot"
 screen -d -m -S "$screenSessionName" "$javaBin" \
-	# maximum memory allocation pool for a Java Virtual Machine (JVM)
-	-Xms1G \
-	# initial memory allocation pool
-	-Xmx2G \
+	-Xms1G `# maximum memory allocation pool for a Java Virtual Machine (JVM)` \
+	-Xmx2G `# initial memory allocation pool` \
 	-XX:+UseG1GC \
     -jar spigot-1.21.5.jar nogui
 popd
