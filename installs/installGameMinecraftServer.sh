@@ -50,7 +50,7 @@ function installMinecraftServer () {
 	echo "${friendlyName}: building JAR files with \"${javaBin}\""
 
 	# "$javaBin" -jar "$filename" --rev 1.19.3
-	"$javaBin" -jar "$filename" --rev 1.21.4
+	"$javaBin" -jar "$filename" --rev 1.21.5
 	echo "${friendlyName}: done building JAR files"
 
 	echo "${friendlyName}: CraftBukkit and Spigot are in the same directory as BuildTools.jar"
