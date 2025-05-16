@@ -6,9 +6,12 @@
 # Ref: https://www.spigotmc.org/threads/spigot-bungeecord-1-19-3.581396/
 # pushd ${HOME}/minecraft && screen "${HOME}/java/jdk-17.0.1+12/bin/java" -jar -Xms1024M -Xmx2048M spigot-1.19.3.jar --forceUpgrade --eraseCache nogui
 
-pushd ${HOME}/minecraft
-screen "${HOME}/java/jdk-17.0.1+12/bin/java" -jar \
-    -Xms1024M \ # maximum memory allocation pool for a Java Virtual Machine (JVM)
-    -Xmx2048M \ # initial memory allocation pool
-    spigot-1.19.3.jar nogui
+pushd ${HOME}/spigot
+javaBin="/usr/bin/java"
+screenSessionName="minecraftSpigot"
+screen -d -m -S "$screenSessionName" "$javaBin" \
+    -Xms1G \ # maximum memory allocation pool for a Java Virtual Machine (JVM)
+    -Xmx2G \ # initial memory allocation pool
+    -XX:+UseG1GC \
+    -jar spigot-1.21.5.jar nogui
 popd
