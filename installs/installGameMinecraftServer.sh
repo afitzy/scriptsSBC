@@ -17,18 +17,10 @@ function getOsCodename () {
 
 # Function to cleanup
 function cleanup () {
-	log "Deleting temp directory: $tempdir"
+	echo "Deleting temp directory: $tempdir"
 	rm -rf "$tempdir"
 }
 trap cleanup EXIT
-
-function installJava () {
-	# Ref: https://www.spigotmc.org/wiki/buildtools/#latest
-	javaBin="${HOME}/java/jdk-17.0.1+12/bin/java"
-	echo "${friendlyName}: building JAR files with \"${javaBin}\""
-	"$javaBin" -jar "$filename" --rev 1.19.3
-	echo "${friendlyName}: done building JAR files"
-}
 
 function installMinecraftServer () {
 	local -r friendlyName="minecraft"
@@ -47,7 +39,17 @@ function installMinecraftServer () {
 
 	git config --global --unset core.autocrlf
 
-	# installJava
+	# Ref: https://www.spigotmc.org/wiki/buildtools/#latest
+
+	# javaBin="${HOME}/java/jdk-17.0.1+12/bin/java"
+	javaBin="/usr/bin/java"
+
+	echo "${friendlyName}: building JAR files with \"${javaBin}\""
+
+	# "$javaBin" -jar "$filename" --rev 1.19.3
+	"$javaBin" -jar "$filename"
+
+	echo "${friendlyName}: done building JAR files"
 
 	echo "${friendlyName}: CraftBukkit and Spigot are in the same directory as BuildTools.jar"
 }
