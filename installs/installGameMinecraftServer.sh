@@ -27,6 +27,7 @@ function installMinecraftServer () {
 
 	pushd "${HOME}"
 	mkdir spigot 2> /dev/null
+	pushd spigot
 
 	# Procedure ref: https://www.spigotmc.org/wiki/buildtools/#linux
 
@@ -53,6 +54,7 @@ function installMinecraftServer () {
 	echo "${friendlyName}: done building JAR files"
 
 	echo "${friendlyName}: CraftBukkit and Spigot are in the same directory as BuildTools.jar"
+	popd
 	popd
 }
 
