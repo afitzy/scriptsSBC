@@ -19,6 +19,14 @@ function cleanup () {
 }
 trap cleanup EXIT
 
+function installJava () {
+	# Ref: https://www.spigotmc.org/wiki/buildtools/#latest
+	javaBin="${HOME}/java/jdk-17.0.1+12/bin/java"
+	echo "${friendlyName}: building JAR files with \"${javaBin}\""
+	"$javaBin" -jar "$filename" --rev 1.19.3
+	echo "${friendlyName}: done building JAR files"
+}
+
 function installMinecraftServer () {
 	local -r friendlyName="minecraft"
 
@@ -36,12 +44,8 @@ function installMinecraftServer () {
 
 	git config --global --unset core.autocrlf
 
-	# Ref: https://www.spigotmc.org/wiki/buildtools/#latest
-	javaBin="${HOME}/java/jdk-17.0.1+12/bin/java"
-	echo "${friendlyName}: building JAR files with \"${javaBin}\""
-	"$javaBin" -jar "$filename" --rev 1.19.3
+	# installJava
 
-	echo "${friendlyName}: done building JAR files"
 	echo "${friendlyName}: CraftBukkit and Spigot are in the same directory as BuildTools.jar"
 }
 
