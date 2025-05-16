@@ -25,6 +25,9 @@ trap cleanup EXIT
 function installMinecraftServer () {
 	local -r friendlyName="minecraft"
 
+	pushd "${HOME}"
+	mkdir spigot 2> /dev/null
+
 	# Procedure ref: https://www.spigotmc.org/wiki/buildtools/#linux
 
 	# Download BuildTools.jar
@@ -43,15 +46,14 @@ function installMinecraftServer () {
 
 	# javaBin="${HOME}/java/jdk-17.0.1+12/bin/java"
 	javaBin="/usr/bin/java"
-
 	echo "${friendlyName}: building JAR files with \"${javaBin}\""
 
 	# "$javaBin" -jar "$filename" --rev 1.19.3
-	"$javaBin" -jar "$filename" --rev latest
-
+	"$javaBin" -jar "$filename" --rev 1.21.4
 	echo "${friendlyName}: done building JAR files"
 
 	echo "${friendlyName}: CraftBukkit and Spigot are in the same directory as BuildTools.jar"
+	popd
 }
 
 function uninstallMinecraftServer () {
