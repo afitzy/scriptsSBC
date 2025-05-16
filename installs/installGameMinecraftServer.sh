@@ -8,8 +8,11 @@ dateStamp=$(date --iso-8601="seconds")
 tempdir=$(mktemp -d)
 
 function getOsVers () {
-	release=$(lsb_release --release --short 2>/dev/null)
-	echo "$release"
+	lsb_release --release --short 2>/dev/null
+}
+
+function getOsCodename () {
+	lsb_release --codename --short 2>/dev/null
 }
 
 # Function to cleanup
@@ -62,8 +65,8 @@ function uninstallMinecraftServer () {
 
 _VERBOSE=1
 
-# 22.04 = Ubuntu 22.04.5 LTS
-if [[ "$(getOsVers)" == "10" || "$(getOsVers)" == "22.04" ]]; then
+# Debian trixie
+if [[ "$(getOsVers)" == "10" || "$(getOsCodename)" == "trixie" ]]; then
 	installMinecraftServer
 else
 	echo "Unrecognized OS version. Not installed pre-requisites."
