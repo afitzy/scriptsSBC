@@ -62,7 +62,8 @@ function uninstallMinecraftServer () {
 
 _VERBOSE=1
 
-if [[ "$(getOsVers)" == "10" ]]; then
+# 22.04 = Ubuntu 22.04.5 LTS
+if [[ "$(getOsVers)" == "10" | "$(getOsVers)" == "22.04" ]]; then
 	installMinecraftServer
 else
 	echo "Unrecognized OS version. Not installed pre-requisites."
